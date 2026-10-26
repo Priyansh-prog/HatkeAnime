@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef } from 'react'
+import gsap from 'gsap'
 import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import CustomCursor from './components/CustomCursor'
@@ -48,6 +49,15 @@ const HomePage = ({ home }) => {
   const filterSig = JSON.stringify(home.filters)
   const [filtersOpen, setFiltersOpen] = useState(false)
   const filtersActive = hasActiveFilters(home.filters)
+  const resultsRef = useRef(null)
+
+  useLayoutEffect(() => {
+    if (!filtersOpen) return
+    const targets = resultsRef.current?.querySelectorAll('.anime-section-head, .anime-grid')
+    if (!targets?.length) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    gsap.fromTo(targets, { y: -90 }, { y: 0, duration: 1, ease: 'power2.out' })
+  }, [filtersOpen])
 
   return (
     <main>
@@ -61,12 +71,14 @@ const HomePage = ({ home }) => {
         </button>
       </div>
       {filtersOpen && <AdvancedFilters filters={home.filters} onChange={home.setFilters} />}
-      <CategoryPage
-        key={`${home.categoryKey}:${activeQuery}:${filterSig}`}
-        sectionKey={home.categoryKey}
-        query={activeQuery}
-        filters={home.filters}
-      />
+      <div ref={resultsRef}>
+        <CategoryPage
+          key={`${home.categoryKey}:${activeQuery}:${filterSig}`}
+          sectionKey={home.categoryKey}
+          query={activeQuery}
+          filters={home.filters}
+        />
+      </div>
     </main>
   )
 }

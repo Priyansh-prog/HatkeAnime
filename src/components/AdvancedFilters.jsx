@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
 import {
   Select,
   SelectContent,
@@ -45,7 +47,23 @@ const FilterSelect = ({ label, value, options, onChange }) => {
 }
 
 const AdvancedFilters = ({ filters = DEFAULT_FILTERS, onChange = () => {} }) => {
+  const panelRef = useRef(null)
   const active = hasActiveFilters(filters)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const ctx = gsap.context(() => {
+      const groups = Array.from(panelRef.current.querySelectorAll('.adv-filter-group')).reverse()
+      gsap.fromTo(
+        groups,
+        { y: -40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.45, ease: 'power2.out', stagger: 0.1 },
+      )
+    }, panelRef)
+
+    return () => ctx.revert()
+  }, [])
 
   const set = (patch) => onChange({ ...filters, ...patch })
 
@@ -59,15 +77,19 @@ const AdvancedFilters = ({ filters = DEFAULT_FILTERS, onChange = () => {} }) => 
   }
 
   return (
-    <div className="adv-filter-panel">
+    <div className="adv-filter-panel" ref={panelRef}>
       <div className="adv-filter-group">
         <span className="filter-label">Genres & Tags</span>
-        <Select value="any" onValueChange={addGenre}>
+        <Select
+          value="any"
+          onValueChange={(v) => (v === 'any' ? set({ genres: [] }) : addGenre(v))}
+        >
           <SelectTrigger className="w-full">
             <SelectValue placeholder="Any" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
+              <SelectItem value="any">Any</SelectItem>
               {GENRE_OPTIONS.map((g) => (
                 <SelectItem key={g.slug} value={g.slug}>
                   {g.label}
