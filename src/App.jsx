@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import CustomCursor from './components/CustomCursor'
 import CategorySelect from './components/CategorySelect'
@@ -7,6 +7,8 @@ import AdvancedFilters from './components/AdvancedFilters'
 import CategoryPage from './components/CategoryPage'
 import AnimeDetailsPage from './components/AnimeDetailsPage'
 import WatchlistPage from './components/WatchlistPage'
+import LoginPage from './components/LoginPage'
+import CharactersPage from './components/CharactersPage'
 import { DEFAULT_FILTERS, hasActiveFilters } from './api/sections'
 
 const useHomeState = () => {
@@ -35,7 +37,7 @@ const SearchHomeRedirect = ({ query }) => {
   useEffect(() => {
     const changed = query !== prevQuery.current
     prevQuery.current = query
-    if (changed && query.trim() && location.pathname !== '/') navigate('/')
+    if (changed && query.trim() && location.pathname !== '/home') navigate('/home')
   }, [query, location.pathname, navigate])
 
   return null
@@ -79,15 +81,18 @@ const App = () => {
         <Navbar searchValue={home.query} onSearchChange={home.setQuery} />
         <SearchHomeRedirect query={home.query} />
         <Routes>
-          <Route path="/" element={<HomePage home={home} />} />
+          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/home" element={<HomePage home={home} />} />
           <Route path="/anime/:id" element={<AnimeDetailsPage />} />
           <Route path="/watchlist" element={<WatchlistPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/characters" element={<CharactersPage />} />
           <Route
             path="*"
             element={
               <main>
                 <p>
-                  Page not found. <a href="/">Back to browse</a>
+                  Page not found. <a href="/home">Back to browse</a>
                 </p>
               </main>
             }

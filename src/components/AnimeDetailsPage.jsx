@@ -227,7 +227,7 @@ const AnimeDetailsPage = () => {
       <div className="details-page details-status">
         <h2>Anime not found</h2>
         <p>No anime exists for ID “{id}”. It may have been removed.</p>
-        <Link className="view-all-btn" to="/">
+        <Link className="view-all-btn" to="/home">
           ← Back to browse
         </Link>
       </div>
@@ -243,7 +243,7 @@ const AnimeDetailsPage = () => {
           <button className="view-all-btn" onClick={() => setRetryKey((k) => k + 1)}>
             Retry
           </button>{' '}
-          <Link className="view-all-btn" to="/">
+          <Link className="view-all-btn" to="/home">
             ← Back to browse
           </Link>
         </p>
@@ -264,7 +264,7 @@ const AnimeDetailsPage = () => {
 
   return (
     <div className="details-page">
-      <Link className="details-back view-all-btn" to="/">
+      <Link className="details-back view-all-btn" to="/home">
         ← Back to browse
       </Link>
 

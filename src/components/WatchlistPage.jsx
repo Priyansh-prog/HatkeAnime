@@ -51,7 +51,7 @@ const WatchlistPage = () => {
       <section className="anime-section">
         <div className="anime-section-head">
           <h2>My Watchlist</h2>
-          <Link className="view-all-btn" to="/">
+          <Link className="view-all-btn" to="/home">
             ← Back to browse
           </Link>
         </div>

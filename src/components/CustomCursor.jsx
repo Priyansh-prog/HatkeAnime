@@ -16,7 +16,7 @@ const CustomCursor = () => {
       xPercent: -50,
       yPercent: -50,
       opacity: 0,
-      backgroundColor: '#FACC15',
+      backgroundColor: '#FFF2B4',
       scale: 1,
     })
 
@@ -78,7 +78,7 @@ const CustomCursor = () => {
         scaleX: 1,
         scaleY: 1,
         rotation: 0,
-        backgroundColor: '#FACC15',
+        backgroundColor: '#FFF2B4',
         duration: 0.22,
       })
     }
@@ -105,7 +105,7 @@ const CustomCursor = () => {
         height: 144,
         borderRadius: 18,
         opacity: 0.9,
-        backgroundColor: '#FACC15',
+        backgroundColor: '#FFF2B4',
         duration: 0.25,
         ease: 'power2.out',
         onComplete: () => {
@@ -141,7 +141,7 @@ const CustomCursor = () => {
         height: 16,
         borderRadius: 9999,
         opacity: 0.6,
-        backgroundColor: '#FACC15',
+        backgroundColor: '#FFF2B4',
         duration: 0.22,
         ease: 'power2.out',
         onComplete: () => setCardInfo(null),
@@ -193,7 +193,7 @@ const CustomCursor = () => {
         height: 16,
         borderRadius: 9999,
         opacity: hasMoved ? 0.6 : 0,
-        backgroundColor: '#FACC15',
+        backgroundColor: '#FFF2B4',
       })
     }
 
@@ -212,7 +212,7 @@ const CustomCursor = () => {
     <div
       ref={cursorRef}
       id="cursor"
-      className="pointer-events-none fixed top-0 left-0 z-9999 h-4 w-4 overflow-hidden rounded-full bg-yellow-400 opacity-0 select-none"
+      className="pointer-events-none fixed top-0 left-0 z-9999 h-4 w-4 overflow-hidden rounded-full bg-[#FFF2B4] opacity-0 select-none"
       style={{ zIndex: 9999 }}
     >
       {cardInfo && (
