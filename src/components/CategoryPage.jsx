@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { kitsuFetch, normalizeAnimeList, hasNextPage, sleep } from '../api/kitsu'
 import { getSection, PAGE_LIMIT, buildSearchPath, buildFilteredPath, hasActiveFilters, DEFAULT_FILTERS } from '../api/sections'
 import AnimeCard from './AnimeCard'
-import { Spinner } from '@/components/ui/spinner'
+import loadingGif from '../assets/loading.gif'
 
 const CategoryPage = ({ sectionKey = 'trending', query = '', filters = DEFAULT_FILTERS, onBack }) => {
   const section = getSection(sectionKey)
@@ -134,8 +134,8 @@ const CategoryPage = ({ sectionKey = 'trending', query = '', filters = DEFAULT_F
       </div>
 
       {loading && (
-        <div className="flex items-center justify-center min-h-50 gap-2">
-          <Spinner className="size-6 text-primary" />
+        <div className="flex flex-col items-center justify-center min-h-50 gap-2">
+          <img src={loadingGif} alt="" className="w-14" />
           <span>Loading anime...</span>
         </div>
       )}

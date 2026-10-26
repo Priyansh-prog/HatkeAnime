@@ -192,10 +192,8 @@ main {
   flex: auto;
   background: #111111;
   color: var(--on-navbar);
-  border: 1px solid crimson;
   font-size: 13px;
   padding: 6px 12px;
-  border-radius: 1rem;
   width: 180px;
   align-items: center;
 }

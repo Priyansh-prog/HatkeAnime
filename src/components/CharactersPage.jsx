@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { kitsuFetch, hasNextPage, sleep } from '../api/kitsu'
 import { PAGE_LIMIT } from '../api/sections'
-import { Spinner } from '@/components/ui/spinner'
+import loadingGif from '../assets/loading.gif'
 
 const normalizeCharacters = (data) =>
   (Array.isArray(data) ? data : [])
@@ -116,8 +116,8 @@ const CharactersPage = () => {
       </div>
 
       {loading && (
-        <div className="flex items-center justify-center min-h-50 gap-2">
-          <Spinner className="size-6 text-primary" />
+        <div className="flex flex-col items-center justify-center min-h-50 gap-2">
+          <img src={loadingGif} alt="" className="w-14" />
           <span>Loading characters...</span>
         </div>
       )}
