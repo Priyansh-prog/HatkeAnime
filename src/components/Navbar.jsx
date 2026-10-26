@@ -22,7 +22,7 @@ const Navbar = ({ searchValue, onSearchChange }) => {
 
         <div className="navbar-actions">
           <SearchBar value={searchValue} onChange={onSearchChange} />
-          <Link to="/login" className="navbar-login">
+          <Link to="/auth" className="navbar-login">
             log in
           </Link>
         </div>

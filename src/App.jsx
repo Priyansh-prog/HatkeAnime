@@ -7,7 +7,7 @@ import AdvancedFilters from './components/AdvancedFilters'
 import CategoryPage from './components/CategoryPage'
 import AnimeDetailsPage from './components/AnimeDetailsPage'
 import WatchlistPage from './components/WatchlistPage'
-import LoginPage from './components/LoginPage'
+import AuthPage from './components/AuthPage'
 import CharactersPage from './components/CharactersPage'
 import { DEFAULT_FILTERS, hasActiveFilters } from './api/sections'
 
@@ -85,7 +85,7 @@ const App = () => {
           <Route path="/home" element={<HomePage home={home} />} />
           <Route path="/anime/:id" element={<AnimeDetailsPage />} />
           <Route path="/watchlist" element={<WatchlistPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/auth" element={<AuthPage />} />
           <Route path="/characters" element={<CharactersPage />} />
           <Route
             path="*"

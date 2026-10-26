@@ -1007,6 +1007,21 @@ main {
   background: var(--wine);
 }
 
+.login-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--pink);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
 .cursor-info {
   animation: cursor-info-in 0.18s ease-out;
 }

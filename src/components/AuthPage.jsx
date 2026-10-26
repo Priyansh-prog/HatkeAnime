@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const LoginPage = () => {
+const AuthPage = () => {
   const navigate = useNavigate()
+  const [mode, setMode] = useState('login')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const isLogin = mode === 'login'
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -14,8 +17,10 @@ const LoginPage = () => {
   return (
     <main className="login-page">
       <form className="login-card" onSubmit={handleSubmit}>
-        <h1>Log in</h1>
-        <p className="login-sub">Welcome back to H-Anime.</p>
+        <h1>{isLogin ? 'Log in' : 'Sign up'}</h1>
+        <p className="login-sub">
+          {isLogin ? 'Welcome back to H-Anime.' : 'Join H-Anime and start building your watchlist.'}
+        </p>
 
         <label className="login-field">
           Email
@@ -34,7 +39,7 @@ const LoginPage = () => {
           <input
             className="login-input"
             type="password"
-            autoComplete="current-password"
+            autoComplete={isLogin ? 'current-password' : 'new-password'}
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -42,8 +47,19 @@ const LoginPage = () => {
         </label>
 
         <button className="login-submit" type="submit">
-          Log in
+          {isLogin ? 'Log in' : 'Sign up'}
         </button>
+
+        <p className="login-sub">
+          {isLogin ? 'New here? ' : 'Already have an account? '}
+          <button
+            type="button"
+            className="login-link"
+            onClick={() => setMode(isLogin ? 'signup' : 'login')}
+          >
+            {isLogin ? 'Sign up' : 'Log in'}
+          </button>
+        </p>
 
         <Link className="view-all-btn" to="/home">
           ← Back to browse
@@ -53,4 +69,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage
+export default AuthPage
