@@ -99,10 +99,12 @@ const CustomCursor = () => {
       if (boxOpen) {
         setCardInfo(pendingInfo)
       }
+
       gsap.to(cursor, {
+        xPercent: -100,
         rotation: 0,
-        width: 120,
-        height: 144,
+        width: 100,
+        height: 100,
         borderRadius: 18,
         opacity: 0.9,
         backgroundColor: '#FFF2B4',
@@ -221,7 +223,7 @@ const CustomCursor = () => {
           <p className="text-[11px]">
             {cardInfo.date ? cardInfo.date.slice(0, 4) : 'Date TBD'}
           </p>
-          <p className="text-[10px] opacity-80">
+          <p className="text-[10px] opacity-80 flex text-wrap">
             {cardInfo.tags === null
               ? 'Loading tags…'
               : cardInfo.tags.slice(0, 3).join(' • ') || 'No tags yet'}

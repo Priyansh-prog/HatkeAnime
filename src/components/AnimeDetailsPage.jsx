@@ -376,7 +376,7 @@ const AnimeDetailsPage = () => {
           <div className="details-main flex-1 min-w-0">
             {relations.length > 0 && (
               <Section title="Relations">
-                <div className="rel-grid flex flex-wrap gap-3.5 px-12">
+                <div className="rel-grid flex flex-wrap gap-3.5 px-12 mx-[-3rem]">
                   {relations.map((r) => {
                     const attrs = r.dest.attributes ?? {}
                     const relPoster =
@@ -408,7 +408,7 @@ const AnimeDetailsPage = () => {
 
             {characters.length > 0 && (
               <Section title="Characters">
-                <div className="char-row">
+                <div className="char-row scrollbar-none ">
                   {characters.map((c) => {
                     const attrs = c.character.attributes ?? {}
                     const avatar =
@@ -440,7 +440,7 @@ const AnimeDetailsPage = () => {
 
             {episodes.length > 0 && (
               <Section title="Episodes">
-                <div className="ep-grid flex flex-wrap gap-3.5 px-12">
+                <div className="ep-grid flex flex-wrap gap-3.5 px-12 mx-[-3rem]">
                   {episodes.map((ep) => {
                     const attrs = ep.attributes ?? {}
                     const titlesEp = attrs.titles ?? {}
